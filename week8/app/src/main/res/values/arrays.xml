@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="size_types">
+        <item>Small</item>
+        <item>Normal</item>
+        <item>Big</item>
+    </string-array>
+    <string-array name="soda_types">
+        <item>Coca-Cola Zero</item>
+        <item>Fanta Zero</item>
+        <item>Pepsi Max</item>
+    </string-array>
+</resources>
