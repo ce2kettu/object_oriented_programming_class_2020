@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="36dp">
+
+    <TextView
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Withdraw"
+        android:textAlignment="center" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/withdraw_amount_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:prefixText="€"
+        android:hint="Amount">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/withdraw_amount_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Context country">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_exposed_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/withdraw_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Withdraw">
+    </Button>
+
+</LinearLayout>

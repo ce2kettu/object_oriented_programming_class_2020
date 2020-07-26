@@ -1,0 +1,20 @@
+<resources>
+    <style name="Theme.Main" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialAlertDialog.Rounded</item>
+    </style>
+
+    <style name="ThemeOverlay.MaterialAlertDialog.Rounded" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.Rounded</item>
+    </style>
+
+    <style name="MaterialAlertDialog.Rounded" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialAlertDialog.Rounded</item>
+    </style>
+
+    <style name="ShapeAppearance.MaterialAlertDialog.Rounded" parent="">
+        <item name="cornerSize">16dp</item>
+    </style>
+</resources>

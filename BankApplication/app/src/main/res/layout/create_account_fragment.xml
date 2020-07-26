@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="24dp"
+    android:orientation="vertical"
+    android:padding="36dp">
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_create_bank_account"
+        android:textAlignment="center" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/account_name_text_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        android:hint="@string/hint_account_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/account_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_account_type">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_exposed_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create_account_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/create_account_button_text" />
+
+</LinearLayout>

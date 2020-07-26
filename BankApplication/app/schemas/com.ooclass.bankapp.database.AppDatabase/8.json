@@ -1,0 +1,283 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 8,
+    "identityHash": "be4b9b6d6cf2e920f234a38467d3b31a",
+    "entities": [
+      {
+        "tableName": "users",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `emailAddress` TEXT, `password` TEXT, `salt` TEXT, `firstName` TEXT, `lastName` TEXT, `phoneNumber` TEXT, `street` TEXT, `city` TEXT, `postCode` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emailAddress",
+            "columnName": "emailAddress",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "salt",
+            "columnName": "salt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "firstName",
+            "columnName": "firstName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastName",
+            "columnName": "lastName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phoneNumber",
+            "columnName": "phoneNumber",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address.street",
+            "columnName": "street",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address.city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "address.postCode",
+            "columnName": "postCode",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_users_emailAddress",
+            "unique": true,
+            "columnNames": [
+              "emailAddress"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_users_emailAddress` ON `${TABLE_NAME}` (`emailAddress`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "transactions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`transactionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER, `name` TEXT, `fromId` INTEGER NOT NULL, `toId` INTEGER NOT NULL, `amount` REAL NOT NULL, `date` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "transactionId",
+            "columnName": "transactionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fromId",
+            "columnName": "fromId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "toId",
+            "columnName": "toId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "transactionId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "accounts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`accountId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER, `ownerId` INTEGER NOT NULL, `name` TEXT, `balance` REAL NOT NULL, `isPayable` INTEGER NOT NULL, `isTransferable` INTEGER NOT NULL, FOREIGN KEY(`ownerId`) REFERENCES `users`(`userId`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "accountId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ownerId",
+            "columnName": "ownerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "balance",
+            "columnName": "balance",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isPayable",
+            "columnName": "isPayable",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isTransferable",
+            "columnName": "isTransferable",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "accountId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "users",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "ownerId"
+            ],
+            "referencedColumns": [
+              "userId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "bank_cards",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bankCardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `linkedAccountId` INTEGER NOT NULL, `name` TEXT, `withdrawLimit` REAL NOT NULL, `payLimit` REAL NOT NULL, `allowedCountries` TEXT, FOREIGN KEY(`linkedAccountId`) REFERENCES `accounts`(`accountId`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "bankCardId",
+            "columnName": "bankCardId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "linkedAccountId",
+            "columnName": "linkedAccountId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "withdrawLimit",
+            "columnName": "withdrawLimit",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "payLimit",
+            "columnName": "payLimit",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "allowedCountries",
+            "columnName": "allowedCountries",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "bankCardId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "accounts",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "linkedAccountId"
+            ],
+            "referencedColumns": [
+              "accountId"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'be4b9b6d6cf2e920f234a38467d3b31a')"
+    ]
+  }
+}

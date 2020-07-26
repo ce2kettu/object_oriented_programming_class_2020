@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="36dp">
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Your Bank Card"
+            android:textAlignment="center" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/card_name_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_card_name"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/card_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pay_limit_text_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:prefixText="€"
+            android:hint="@string/hint_pay_limit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pay_limit_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/withdrawal_limit_text_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:prefixText="€"
+            android:hint="@string/hint_withdrawal_limit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/withdrawal_limit_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/bank_card_linked_account_name"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Linked account name: " />
+
+        <TextView
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Allowed countries:" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/country_chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_card_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/save_card_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/card_withdraw_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Simulated withdraw" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/card_payment_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Simulated card payment" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
